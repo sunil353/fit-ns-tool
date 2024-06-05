@@ -5,6 +5,7 @@ import com.fitns.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 @Service
 public class ProductService {
@@ -13,11 +14,17 @@ public class ProductService {
     private ProductRepository repository;
 
     public Product saveProduct(Product product){
-        return repository.save(product);
+        if(product !=null){
+            repository.save(product);
+        }
+        return product;
     }
 
     public List<Product> saveAllProducts(List<Product> products){
-        return repository.saveAll(products);
+        if(products !=null){
+            repository.saveAll(products);
+        }
+        return products;
     }
 
     public List<Product> getProducts(){
@@ -28,8 +35,8 @@ public class ProductService {
         return  repository.findById(productId).orElse(null);
     }
 
-    public List<Product> getProductByName(String productName){
-        return repository.findByProductName(productName);
+    public List<Product> getProductByName(String name){
+        return repository.findByName(name);
     }
 
 
@@ -39,10 +46,28 @@ public class ProductService {
     }
 
     public Product updateProduct(Product product){
-       Product existingProduct =  repository.findById(product.getProductId()).orElse(null);
-        existingProduct.setProductName(product.getProductName());
-        existingProduct.setProductQuantity(product.getProductQuantity());
-        existingProduct.setProductPrice(product.getProductPrice());
+        Product existingProduct=null;
+        if(product !=null){
+            existingProduct =  repository.findById(product.getId()).orElse(null);
+            if(product.getName() !=null){
+                existingProduct.setName(product.getName());
+            }
+            if(product.getQuantity() !=0){
+                existingProduct.setQuantity(product.getQuantity());
+            }
+            if(product.getPrice() !=0){
+                existingProduct.setPrice(product.getPrice());
+            }
+            if(product.getStartDate() !=null){
+                existingProduct.setStartDate(product.getStartDate());
+            }
+            if(product.getEndDate() !=null){
+                existingProduct.setEndDate(product.getEndDate());
+            }
+            if(product.getStatus() !=null){
+                existingProduct.setStatus(product.getStatus());
+            }
+        }
         return repository.save(existingProduct);
     }
 
