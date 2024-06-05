@@ -54,7 +54,7 @@ public class ProductController {
     }
     @DeleteMapping("/delete/{id}")
     public String deleteProduct(@PathVariable Integer id){
-        logger.info("delete product by id");
+
     return service.deletedProductById(id);
     }
 }
