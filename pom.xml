@@ -14,7 +14,7 @@
 	<name>FIT-NS-Tool</name>
 	<description>Fit NS project for Spring Boot</description>
 	<properties>
-		<java.version>9.0.4</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -66,7 +66,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-
+				<version>3.11.0</version>
 				<configuration>
 					<source>9</source>
 					<target>9</target>
